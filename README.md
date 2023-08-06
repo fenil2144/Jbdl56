@@ -5,6 +5,11 @@ Assignments
 1. Basic core Java - https://docs.google.com/document/d/1YMig3AVLglOgQVWFmt93ZtdvndiRRfowexAmPpUGeP0/edit
 2. Streams and Lambdas - https://docs.google.com/document/d/1AAlORAmRz-m_aaviZ_k4DgbbbLNzlrn3mV8ayaxgKOg/edit
 
+Assignment Solution
+
+1. Basic core java - https://docs.google.com/document/d/166Zv24JnGhzYvCQN1ND5M2aOahE1B0yoaLwh7ogawco/edit?usp=sharing
+2. Streams and lambdas - https://drive.google.com/file/d/17JxrPOt0JzIyb-JoVoMAuCu1U773iff0/view?usp=sharing
+
 Quizes
 1. Streams - https://forms.gle/nenVZ2AdqGpdSzid6
 2. Multi Threading - https://forms.gle/3YqgZk1gdCSm15A36
