@@ -25,6 +25,9 @@ public class BookServiceImpl implements BookServiceInterf {
 	@Autowired
 	AuthorServiceInterf authorServiceInterf;
 
+    	@Autowired
+    	EntityManager em;
+
 	@Override
 	public Book create(BookCreateRequest bookCreateRequest) {
 		//Logic to check if Book is already existing in database
@@ -70,5 +73,23 @@ public class BookServiceImpl implements BookServiceInterf {
 	public Book save(Book book) {
 		return bookRepositoryInterf.save(book);
 	}
+
+    public List<Book> getBooks(BookCreateRequest bookCreateRequest){
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+
+        Root<Book> book = cq.from(Book.class);
+        List<Predicate> predicates = new ArrayList<>();
+
+        if(bookCreateRequest.getName() !=null){
+            predicates.add(cb.like(book.get("name"),"%"+bookCreateRequest.getName()+"%"));
+        }
+        if(bookCreateRequest.getCost() != 0){
+            predicates.add(cb.equal(book.get("cost"),bookCreateRequest.getCost()));
+        }
+        cq.where(predicates.toArray(new Predicate[0]));
+        return em.createQuery(cq).getResultList();
+
+    }
 
 }
