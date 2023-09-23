@@ -88,7 +88,7 @@ public class TransactionServiceImpl implements TransactionServiceInterf {
 			
 			//select top 1 from transaction where book_id=bookId and student_id=studentId and transaction_type=0 order by transaction_date desc;
 			Transaction issueTxn = transactionRepositoryInterf
-	                .findTopByBookAndStudentAndTransactionTypeOrderByIdDesc(book.get(), student.get(), TransactionType.ISSUE);
+	                .findTopByBookAndStudentAndTransactionTypeOrderByIdDesc(book.get().getId(), student.get().getId(), TransactionType.ISSUE);
 			
 			Transaction transaction = Transaction.builder()
 					.externalId(UUID.randomUUID().toString())

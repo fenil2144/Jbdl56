@@ -1,18 +1,23 @@
 spring:
  datasource:
-  url: jdbc:mysql://localhost:3306/minorProject_jbdl34?createDatabaseIfNotExist=true
+  url: jdbc:mysql://localhost:3306/minorProject_jbdl56?createDatabaseIfNotExist=true
   username: root
-  password: root1234
+  password: root
  jpa:
-  hibernate.ddl-auto: create
+  hibernate.ddl-auto: update
   show-sql: true 
   
 server:
- port: 9090
+ port: 8085
  
 custom_property:
  secret_key: 8ff8fg8erhrhr
  
 book:
  maxAllowedDays: 14
+
+users:
+ authority:
+  student: std
+  admin: adm
  

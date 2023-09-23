@@ -1,6 +1,5 @@
 package com.example.minorProject1.models;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -20,10 +19,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+@Entity
 @AllArgsConstructor
 @Builder
-@Entity
+@Data
 @NoArgsConstructor
 public class Author {
 	
@@ -37,10 +36,10 @@ public class Author {
 	
 	private int age;
 	
-	@Column(unique = true,nullable = false)
+	@Column(unique = true, nullable = false)
 	private String email;
 	
-	@OneToMany(mappedBy = "author",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
 	private List<Book> bookList;
 	
 	@CreationTimestamp

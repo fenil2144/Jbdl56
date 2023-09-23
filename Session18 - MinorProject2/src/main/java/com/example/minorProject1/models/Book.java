@@ -1,12 +1,13 @@
 package com.example.minorProject1.models;
 
-import java.util.Collection;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,26 +19,20 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.example.minorProject1.enums.Genre;
-import com.example.minorProject1.responseDto.BookSearchResponse;
+import com.example.minorProject1.response.BookSearchResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-@Getter
-@Setter
-@ToString(exclude = {"author"})
-@AllArgsConstructor
-@Builder
 @Entity
+@Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+public class Book implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,9 +52,10 @@ public class Book {
 	
 	@ManyToOne
 	@JoinColumn
+	@JsonIgnoreProperties({"bookList"})
 	private Student student;
 	
-	@OneToMany(mappedBy = "book")
+	@OneToMany(mappedBy = "book",fetch = FetchType.LAZY)
 	private List<Transaction> transactionList;
 	
 	@CreationTimestamp
@@ -68,11 +64,24 @@ public class Book {
 	@UpdateTimestamp
 	private Date updatedOn;
 	
+//	private int quantity;
+//	
+//	private String Status;
+	
 	public BookSearchResponse toBookSearchResponse() {
+		
 		return BookSearchResponse.builder()
-				.id(id).name(name)
-				.author(author).cost(cost)
-				.genre(genre).student(student).createdOn(createdOn).updatedOn(updatedOn).build();
+				.id(id)
+				.name(name)
+				.author(author)
+				.cost(cost)
+				.genre(genre)
+				.student(student)
+				.transactionList(transactionList)
+				.createdOn(createdOn)
+				.updatedOn(updatedOn)
+				.build();
 	}
+	
 
 }

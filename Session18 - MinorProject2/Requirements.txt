@@ -1,0 +1,13 @@
+Student:
+1) Retrieve Books
+2) Do Transaction (issue/Return)
+3) View/Update Details
+4) Delete/DeActivate Account
+
+Admin/Librarian:
+1) Add/Update/Delete Book
+2) Retrive Book
+3) View Student Details
+
+Student Creation: Permitted For All.
+Admin Creation: Done By Another Admin.
